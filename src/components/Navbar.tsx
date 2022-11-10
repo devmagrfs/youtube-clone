@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BsYoutube, BsSearch } from 'react-icons/bs';
 
 const Navbar = () => {
@@ -16,10 +17,10 @@ const Navbar = () => {
 
 	return (
 		<header className='flex'>
-			<div className='w-2/4 flex justify-start items-center'>
+			<Link className='w-2/4 flex justify-start items-center' to='/'>
 				<BsYoutube className='inline text-red-600 dark:text-red-800' />
 				<span>Youtube</span>
-			</div>
+			</Link>
 			<div className='w-2/4 flex justify-start items-center'>
 				<form onSubmit={handleSubmit} className='flex items-center'>
 					<input type='text' placeholder='Search...' onChange={handleChange} value={searchText} />
