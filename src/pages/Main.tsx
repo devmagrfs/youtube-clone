@@ -75,7 +75,15 @@ const Main = () => {
 	return (
 		<main className='flex flex-wrap'>
 			{trending.map((video) => {
-				return <VideoCard title={video.snippet.title} channelTitle={video.snippet.channelTitle} publishedAt={video.snippet.publishedAt} thumbnails={video.snippet.thumbnails.default.url} />;
+				return (
+					<VideoCard
+						title={video.snippet.title}
+						channelTitle={video.snippet.channelTitle}
+						publishedAt={video.snippet.publishedAt}
+						thumbnails={video.snippet.thumbnails.default.url}
+						movieId={video.id}
+					/>
+				);
 			})}
 		</main>
 	);
