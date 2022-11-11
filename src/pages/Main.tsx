@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VideoCard from '../components/VideoCard';
 
-interface TrendingVideo {
+export interface VideoType {
 	etag: string;
 	id: string;
 	kind: string;
@@ -52,7 +52,7 @@ interface TrendingVideo {
 
 interface TrendingList {
 	etag: string;
-	items: TrendingVideo[];
+	items: VideoType[];
 	kind: string;
 	nextPageToken: string;
 	pageInfo: {
@@ -62,11 +62,11 @@ interface TrendingList {
 }
 
 const Main = () => {
-	const [trending, setTrending] = useState<TrendingVideo[]>([]);
+	const [trending, setTrending] = useState<VideoType[]>([]);
 	const getTrendingList = async () => {
-		const trendingList = await axios.get('data/trending.json');
-		console.log(trendingList.data.items);
-		setTrending(trendingList.data.items);
+		const { data } = await axios.get('data/trending.json');
+		console.log(data.items);
+		setTrending(data.items);
 	};
 
 	useEffect(() => {
@@ -75,15 +75,7 @@ const Main = () => {
 	return (
 		<main className='flex flex-wrap'>
 			{trending.map((video) => {
-				return (
-					<VideoCard
-						title={video.snippet.title}
-						channelTitle={video.snippet.channelTitle}
-						publishedAt={video.snippet.publishedAt}
-						thumbnails={video.snippet.thumbnails.default.url}
-						movieId={video.id}
-					/>
-				);
+				return <VideoCard video={video} key={video.etag} />;
 			})}
 		</main>
 	);

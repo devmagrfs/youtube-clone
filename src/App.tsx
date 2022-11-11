@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 		errorElement: <NotFound />,
 		children: [
 			{ index: true, element: <Main /> },
-			{ path: '/watch/:movieId', element: <Detail /> },
+			{ path: '/watch/:videoId', element: <Detail /> },
 		],
 	},
 ]);
