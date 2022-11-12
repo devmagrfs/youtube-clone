@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsYoutube, BsSearch } from 'react-icons/bs';
 
 const Header = () => {
+	const navigate = useNavigate();
 	const [searchText, setSearchText] = useState('');
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log('submit');
+		navigate(`/videos/${searchText}`);
 	};
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ const Header = () => {
 
 	return (
 		<header className='flex'>
-			<Link className='w-2/4 flex justify-start items-center' to='/'>
+			<Link to='/' className='w-2/4 flex justify-start items-center'>
 				<BsYoutube className='inline text-red-600 dark:text-red-800' />
 				<h1>Youtube</h1>
 			</Link>
