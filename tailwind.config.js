@@ -15,7 +15,11 @@ module.exports = {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      colors: {
+        youtube: '#FF0000',
+      }
+    },
   },
   plugins: [],
 }
