@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsYoutube, BsSearch } from 'react-icons/bs';
 
-const Navbar = () => {
+const Header = () => {
 	const [searchText, setSearchText] = useState('');
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +19,7 @@ const Navbar = () => {
 		<header className='flex'>
 			<Link className='w-2/4 flex justify-start items-center' to='/'>
 				<BsYoutube className='inline text-red-600 dark:text-red-800' />
-				<span>Youtube</span>
+				<h1>Youtube</h1>
 			</Link>
 			<div className='w-2/4 flex justify-start items-center'>
 				<form onSubmit={handleSubmit} className='flex items-center'>
@@ -33,4 +33,4 @@ const Navbar = () => {
 	);
 };
 
-export default Navbar;
+export default Header;
