@@ -20,19 +20,17 @@ const Header = () => {
 	useEffect(() => setSearchText(keyword || ''), [keyword]);
 
 	return (
-		<header className='flex'>
-			<Link to='/' className='w-2/4 flex justify-start items-center'>
-				<BsYoutube className='inline text-red-600 dark:text-red-800' />
-				<h1>Youtube</h1>
+		<header className='w-full flex border-b border-zinc-600 mb-4 p-4'>
+			<Link to='/' className='flex items-center'>
+				<BsYoutube className='text-youtube dark:text-red-800 text-3xl' />
+				<h1 className='font-bold ml-2 text-3xl'>Youtube</h1>
 			</Link>
-			<div className='w-2/4 flex justify-start items-center'>
-				<form onSubmit={handleSubmit} className='flex items-center'>
-					<input type='text' placeholder='Search...' onChange={handleChange} value={searchText} />
-					<button className='bg-gray-400'>
-						<BsSearch className='mx-auto my-0' />
-					</button>
-				</form>
-			</div>
+			<form onSubmit={handleSubmit} className='w-full flex justify-center'>
+				<input className='w-7/12 p-2 outline-none bg-black text-gray-50' type='text' placeholder='Search...' onChange={handleChange} value={searchText} />
+				<button className='bg-zinc-600 px-4'>
+					<BsSearch className='mx-auto my-0' />
+				</button>
+			</form>
 		</header>
 	);
 };
