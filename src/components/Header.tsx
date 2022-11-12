@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BsYoutube, BsSearch } from 'react-icons/bs';
 
 const Header = () => {
+	const { keyword } = useParams();
 	const navigate = useNavigate();
 	const [searchText, setSearchText] = useState('');
 
@@ -15,6 +16,8 @@ const Header = () => {
 		setSearchText(event.target.value);
 		console.log(searchText);
 	};
+
+	useEffect(() => setSearchText(keyword || ''), [keyword]);
 
 	return (
 		<header className='flex'>
