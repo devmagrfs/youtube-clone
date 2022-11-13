@@ -7,7 +7,7 @@ const VideoCard = ({ video }: { video: VideoType }) => {
 	const { thumbnails, title, channelTitle, publishedAt } = video.snippet;
 	const navigate = useNavigate();
 	const moveDetailVideoPage = () => {
-		navigate(`/video/watch/${video.id}`);
+		navigate(`/video/watch/${video.id}`, { state: { video } });
 	};
 
 	return (
