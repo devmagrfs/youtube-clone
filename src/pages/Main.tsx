@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import VideoCard from '../components/VideoCard';
+import { useYoutubeApi } from '../context/YoutubeApiContext';
 
 export interface VideoType {
-	etag: string;
+	etag?: string;
 	id: string;
-	kind: string;
+	kind?: string;
 	snippet: {
 		categoryId: string;
 		channelId: string;
@@ -50,7 +52,7 @@ export interface VideoType {
 	};
 }
 
-interface TrendingList {
+export interface TrendingList {
 	etag: string;
 	items: VideoType[];
 	kind: string;
@@ -59,25 +61,26 @@ interface TrendingList {
 		resultsPerPage: number;
 		totalResults: number;
 	};
+	regionCode?: string;
 }
 
 const Main = () => {
-	const [trending, setTrending] = useState<VideoType[]>([]);
-	const getTrendingList = async () => {
-		const { data } = await axios.get('data/trending.json');
-		console.log(data.items);
-		setTrending(data.items);
-	};
+	const { keyword } = useParams();
+	const { youtube } = useYoutubeApi();
+	const { isLoading, error, data: videos } = useQuery(['videos', keyword], () => youtube.search(keyword));
 
-	useEffect(() => {
-		getTrendingList();
-	}, []);
 	return (
-		<main className='flex flex-wrap'>
-			{trending.map((video) => {
-				return <VideoCard video={video} key={video.etag} />;
-			})}
-		</main>
+		<>
+			{isLoading && <p>Loading...</p>}
+			{error && <p>Something is wrong...</p>}
+			{videos && (
+				<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4'>
+					{videos.map((video: VideoType) => (
+						<VideoCard video={video} key={video.id} />
+					))}
+				</ul>
+			)}
+		</>
 	);
 };
 
