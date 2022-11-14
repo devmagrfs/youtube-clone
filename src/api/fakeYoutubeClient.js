@@ -7,7 +7,7 @@ export default class FakeYoutubeClient {
       : axios.get('/data/keyword.json');
   }
 
-  async videos() {
+  async trending() {
     return axios.get('/data/trending.json');
   }
 

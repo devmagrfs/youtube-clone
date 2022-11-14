@@ -45,7 +45,7 @@ export default class Youtube {
 
   async #mostPopular() {
     return this.apiClient
-      .videos({
+      .trending({
         params: {
           part: 'snippet',
           maxResults: 25,
