@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VideoType } from '../pages/Main';
+import { VideoType } from '../types/youtube';
 import { formatAgo } from '../util/date';
 
 interface VideoCardProp {

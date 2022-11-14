@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../context/YoutubeApiContext';
 import VideoCard from './VideoCard';
-import { VideoType } from '../pages/Main';
+import { VideoType } from '../types/youtube';
 
 interface RelatedListProp {
 	id: string;
