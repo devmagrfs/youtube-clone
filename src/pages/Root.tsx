@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Header from '../components/Header';
 import { YoutubeApiProvider } from '../context/YoutubeApiContext';
+import ScrollToTop from '../hooks/useScrollToTop';
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,7 @@ const Root = () => {
 			<Header />
 			<YoutubeApiProvider>
 				<QueryClientProvider client={queryClient}>
+					<ScrollToTop />
 					<Outlet />
 					<ReactQueryDevtools initialIsOpen={false} />
 				</QueryClientProvider>
