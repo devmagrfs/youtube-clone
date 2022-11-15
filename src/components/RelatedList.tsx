@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../context/YoutubeApiContext';
 import VideoCard from './VideoCard';
 import { VideoType } from '../types/youtube';
+import VideoCardSkeleton from './VideoCardSkeleton';
 
 interface RelatedListProp {
 	id: string;
@@ -10,18 +11,21 @@ interface RelatedListProp {
 
 const RelatedList = ({ id }: RelatedListProp) => {
 	const { youtube } = useYoutubeApi();
-	const { isLoading, error, data: videos } = useQuery(['related', id], () => youtube.relatedVideos(id), { staleTime: 1000 * 60 * 5 });
+	const { error, data: videos } = useQuery(['related', id], () => youtube.relatedVideos(id), { staleTime: 1000 * 60 * 5 });
+
+	let isLoading = true;
+	const isList = true;
+
 	return (
 		<>
-			{isLoading && <p>Loading...</p>}
 			{error && <p>Something is wrong...</p>}
-			{videos && (
-				<ul>
-					{videos.map((video: VideoType) => (
-						<VideoCard video={video} key={video.id} type='list' />
-					))}
-				</ul>
-			)}
+			<ul>
+				{isLoading && !videos
+					? new Array(25).fill(1).map((_, i) => {
+							return <VideoCardSkeleton key={i} isList={isList} />;
+					  })
+					: videos.map((video: VideoType) => <VideoCard video={video} key={video.id} type='list' />)}
+			</ul>
 		</>
 	);
 };
