@@ -7,7 +7,6 @@ const Detail = () => {
 	const {
 		state: { video },
 	} = useLocation();
-	console.log(';;;');
 
 	const { title, channelId, channelTitle, description } = video.snippet;
 
