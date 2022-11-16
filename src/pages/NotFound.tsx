@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const NotFound = () => {
-	return <div>NotFound</div>;
+	useEffect(() => {}, []);
+
+	return <p className='flex text-red-400 text-center text-2lg'>Page Not Found</p>;
 };
 
 export default NotFound;
