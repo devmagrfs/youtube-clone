@@ -14,7 +14,6 @@ const Header = () => {
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchText(event.target.value);
-		console.log(searchText);
 	};
 
 	useEffect(() => setSearchText(keyword || ''), [keyword]);
