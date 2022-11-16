@@ -9,7 +9,7 @@ interface ChannelInfoProp {
 
 const ChannelInfo = ({ id, name }: ChannelInfoProp) => {
 	const { youtube } = useYoutubeApi();
-	const { error, isLoading, data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id), { staleTime: 1000 * 60 * 5 });
+	const { data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id), { staleTime: 1000 * 60 * 5 });
 
 	return (
 		<div className='flex my-4 mb-8 items-center'>

@@ -18,7 +18,7 @@ const ScrollToTop = () => {
 				left: 0,
 			});
 		}
-	}, [pathname]);
+	}, [pathname, navigationType]);
 
 	return null;
 };
