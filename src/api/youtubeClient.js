@@ -17,6 +17,6 @@ export default class YoutubeClient {
   }
 
   async channels(params) {
-    return axios.get('channels', params);
+    return this.get('channels', params);
   }
 }
