@@ -11,6 +11,10 @@ const Detail = () => {
 
 	const { title, channelId, channelTitle, description } = video.snippet;
 
+	const handleVideoLoaded = () => {
+		setIsLoading(false);
+	};
+
 	return (
 		<section className='flex flex-col lg:flex-row'>
 			<article className='basis-4/6'>
@@ -22,9 +26,7 @@ const Detail = () => {
 					src={`https://www.youtube.com/embed/${video.id}`}
 					frameBorder='0'
 					title={title}
-					onLoad={() => {
-						setIsLoading(true);
-					}}
+					onLoad={handleVideoLoaded}
 					className={`${isLoading ? 'bg-slate-600 w-full h-[640px]' : ''}`}
 				/>
 				<div className='p-8'>
