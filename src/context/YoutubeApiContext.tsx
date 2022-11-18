@@ -8,7 +8,6 @@ const client = new YoutubeClient();
 const youtube = new Youtube(client);
 
 export function YoutubeApiProvider({ children }: { children: React.ReactNode }) {
-	console.log(youtube);
 	return <YoutubeApiContext.Provider value={youtube}>{children}</YoutubeApiContext.Provider>;
 }
 
