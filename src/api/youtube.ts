@@ -5,7 +5,6 @@ export default class Youtube {
 
 	constructor(apiClient: youtubeClient) {
 		this.apiClient = apiClient;
-		console.log(apiClient);
 	}
 
 	async search(keyword: string) {
