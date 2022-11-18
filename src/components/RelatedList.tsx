@@ -10,21 +10,20 @@ interface RelatedListProp {
 }
 
 const RelatedList = ({ id }: RelatedListProp) => {
-	const { youtube } = useYoutubeApi();
-	const { error, data: videos } = useQuery(['related', id], () => youtube.relatedVideos(id), { staleTime: 1000 * 60 * 5 });
+	const youtube = useYoutubeApi();
+	const { isLoading, error, data: videos } = useQuery(['related', id], () => youtube.relatedVideos(id), { staleTime: 1000 * 60 * 5 });
 
-	let isLoading = true;
 	const isList = true;
 
 	return (
 		<>
 			{error && <p>Something is wrong...</p>}
 			<ul>
-				{isLoading && !videos
-					? new Array(25).fill(1).map((_, i) => {
-							return <VideoCardSkeleton key={i} isList={isList} />;
-					  })
-					: videos.map((video: VideoType) => <VideoCard video={video} key={video.id} type='list' />)}
+				{isLoading &&
+					new Array(25).fill(1).map((_, i) => {
+						return <VideoCardSkeleton key={i} isList={isList} />;
+					})}
+				{videos && videos.map((video: VideoType) => <VideoCard video={video} key={video.id} type='list' />)}
 			</ul>
 		</>
 	);

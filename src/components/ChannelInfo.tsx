@@ -8,7 +8,7 @@ interface ChannelInfoProp {
 }
 
 const ChannelInfo = ({ id, name }: ChannelInfoProp) => {
-	const { youtube } = useYoutubeApi();
+	const youtube = useYoutubeApi();
 	const { data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id), { staleTime: 1000 * 60 * 5 });
 
 	return (
