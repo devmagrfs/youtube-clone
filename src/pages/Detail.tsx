@@ -17,18 +17,8 @@ const Detail = () => {
 
 	return (
 		<section className='flex flex-col lg:flex-row'>
-			<article className='basis-4/6'>
-				<iframe
-					id='player'
-					data-type='text/html'
-					width='100%'
-					height='640'
-					src={`https://www.youtube.com/embed/${video.id}`}
-					frameBorder='0'
-					title={title}
-					onLoad={handleVideoLoaded}
-					className={`${isLoading ? 'bg-slate-600 w-full h-[640px]' : ''}`}
-				/>
+			<article className={`basis-4/6 ${isLoading ? 'hidden' : ''}`}>
+				<iframe id='player' data-type='text/html' width='100%' height='640' src={`https://www.youtube.com/embed/${video.id}`} frameBorder='0' title={title} onLoad={handleVideoLoaded} />
 				<div className='p-8'>
 					<h2 className='text-xl font-bold'>{title}</h2>
 					<ChannelInfo id={channelId} name={channelTitle} />
