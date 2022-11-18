@@ -23,7 +23,7 @@ const RelatedList = ({ id }: RelatedListProp) => {
 					new Array(25).fill(1).map((_, i) => {
 						return <VideoCardSkeleton key={i} isList={isList} />;
 					})}
-				{videos && videos.map((video: VideoType) => <VideoCard video={video} key={video.id} type='list' />)}
+				{!isLoading && videos && videos.map((video: VideoType) => <VideoCard video={video} key={video.id} type='list' />)}
 			</ul>
 		</>
 	);

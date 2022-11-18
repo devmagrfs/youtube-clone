@@ -20,12 +20,7 @@ const Main = () => {
 					new Array(25).fill(1).map((_, i) => {
 						return <VideoCardSkeleton key={i} />;
 					})}
-				{videos && videos.map((video: VideoType) => <VideoCard video={video} key={video.id} />)}
-				{/* {isLoading && !videos
-					? new Array(25).fill(1).map((_, i) => {
-							return <VideoCardSkeleton key={i} />;
-					  })
-					: videos.map((video: VideoType) => <VideoCard video={video} key={video.id} />)} */}
+				{!isLoading && videos && videos.map((video: VideoType) => <VideoCard video={video} key={video.id} />)}
 			</ul>
 		</>
 	);
