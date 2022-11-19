@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { ChannelDetailType, RelatedVideoListType, TrendingListType } from '../types/youtube';
 
 export default class FakeYoutubeClient {
